@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Agregar Eventos</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="agregarEventos">
+            <div id="agregarEventos" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Evento</h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div> 
+                        <form th:action="@{/guardar}" th:object="${eventos}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="local" th:text="#{eventos.local}">Local</label>
+                                    <input type="text" class="form-control" name="local" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="visitante" th:text="#{eventos.visitante}">Visitante</label>
+                                    <input type="text" class="form-control" name="visitante" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="resultado" th:text="#{eventos.resultado}">Resultados</label>
+                                    <input type="text" class="form-control" name="resultado" required="true">
+                                </div>
+                                
+                               
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

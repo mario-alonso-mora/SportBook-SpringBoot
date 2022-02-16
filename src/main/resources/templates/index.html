@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantillaEventos :: head">
+        <title>Inicio</title>
+    </head>
+    <body style="background-color: #001015">
+       
+        <header th:replace="layout/plantillaEventos :: header"></header>
+        <section th:replace="layout/botonesAgregar :: botonesAgregar"></section>
+        <section th:replace="layout/agregarEventos :: agregarEventos"></section>
+        <section th:replace="layout/listadoEventos :: listadoEventos"></section>
+        <footer th:replace="layout/plantillaEventos :: footer"></footer>
+    </body>
+</html>

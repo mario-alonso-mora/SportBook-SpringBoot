@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Listado Clientes</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        
+        <section th:fragment="listadoEventos" id="eventos">
+            <div class="container">
+                 
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{eventos.titulo-lista}]]</h4>
+                            </div>
+                          
+                            <div th:if="${eventos != null and !eventos.empty}">
+                                <table style="text-align: center" class="table table-stryped table-dark">
+                                    <thead class="thead-black">
+                                         
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{eventos.local}">Local</th>
+                                            <th th:text="vs">vs</th>
+                                            <th th:text="#{eventos.visitante}">Visitante</th>
+                                            <th th:text="#{eventos.resultado}">Resultado</th>
+                                             
+                                            
+                                      
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="eventos, contador : ${eventos}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${eventos.local}]]</td>
+                                            <td>vs</td>
+                                            <td>[[${eventos.visitante}]]</td>
+                                            <td>[[${eventos.resultado}]]</td>
+                                        
+                                            
+
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editar/} + ${eventos.idEventos}"
+                                                   class="btn btn-primary">
+                                                    <i class="fas fa-angle-double-right">[[#{accion.editar}]]</i> 
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar(idEventos=${eventos.idEventos})}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-angle-double-right">[[#{accion.eliminar}]]</i> 
+                                                </a>
+                                            </td>
+                                        </tr>   
+                                    </tbody>
+                                </table>
+                             
+                            </div>
+                            <div class="text-center p-2" th:if="${eventos == null or eventos.empty}">
+                                <span th:text="#{persona.lista-vacia}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-info text-white mb-3">
+                        <div class="card-body">
+                            <h3 th:text="#{eventos.totalEventos}">Total Eventos</h3>
+                            <h4 class="display-4">
+                                <i class="fas fa-futbol"></i> [[${totalEventos}]]
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </section>
+        
+    </body>
+</html>
